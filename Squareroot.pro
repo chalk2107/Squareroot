@@ -1,7 +1,9 @@
 QT -= gui
+QT += testlib
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
+CONFIG += testcase
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,7 +19,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         error.cpp \
         main.cpp \
-        positiveintegerthroughqvector.cpp
+        positiveintegerthroughqvector.cpp \
+        test_for_convertarrchartostring.cpp \
+        test_for_maxintforsqrt.cpp \
+        test_for_squareroot.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +31,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     error.h \
-    positiveintegerthroughqvector.h
+    positiveintegerthroughqvector.h \
+    test_for_convertarrchartostring.h \
+    test_for_maxintforsqrt.h \
+    test_for_squareroot.h

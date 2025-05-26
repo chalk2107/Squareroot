@@ -1,6 +1,26 @@
 #include "test_for_convertarrchartostring.h"
 
-Test_for_convertArrCharToString::Test_for_convertArrCharToString()
-{
+void Test_for_convertArrCharToString::testCase1() {
+    PositiveIntegerThroughQVector obj;
+    obj.vectorInteger = { '1' };
 
+    QVERIFY2(obj.convertArrayCharToString() == "1", "не так");
+}
+
+void Test_for_convertArrCharToString::testCase2() {
+    PositiveIntegerThroughQVector obj;
+    obj.vectorInteger = { '1', '2', '3', '4'};
+
+    QVERIFY2(obj.convertArrayCharToString() == "1234", "не так");
+}
+
+void Test_for_convertArrCharToString::testCase3() {
+    PositiveIntegerThroughQVector obj;
+    obj.vectorInteger = {
+    '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    '1', '0', '1', '1', '1', '2', '1', '3', '1', '4',
+    '1', '5', '1', '6', '1', '7', '1', '8', '1', '9', '2'
+    };
+
+    QVERIFY2(obj.convertArrayCharToString() == "123456789101112131415161718192", "не так");
 }
