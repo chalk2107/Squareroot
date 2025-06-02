@@ -7,8 +7,12 @@ PositiveIntegerThroughQVector::PositiveIntegerThroughQVector()
 
 
 QString PositiveIntegerThroughQVector::convertArrayCharToString(){
+    QString string;
 
-    return "ggsdg";
+    for (int i = 0; i < vectorInteger.length(); i++) {
+        string += vectorInteger[i];
+    }
+    return string;
 }
 
 
