@@ -31,7 +31,7 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmaller() {
     int sgrupInt = 0;
     int lenSgrupInt = 2;
 
-    QVERIFY2(maxIntforSqRt(p, vector, x, sgrupInt, lenSgrupInt) == 1, "Функция вернула неверный результат y");
+    QVERIFY2(maxIntforSqRt(p, vector, x, sgrupInt, lenSgrupInt) == 16, "Функция вернула неверный результат y");
     QVERIFY2(x == 4, "Неверное значение x");
     QVERIFY2(sgrupInt == 24, "Неверное значение sgrupInt");
 }

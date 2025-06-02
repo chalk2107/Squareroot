@@ -1,6 +1,7 @@
 #ifndef POSITIVEINTEGERTHROUGHQVECTOR_H
 #define POSITIVEINTEGERTHROUGHQVECTOR_H
 #include <QVector>
+#include <QtMath>
 
 class PositiveIntegerThroughQVector
 {
