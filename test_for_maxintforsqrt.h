@@ -5,12 +5,18 @@
 #include <QObject>
 #include "positiveintegerthroughqvector.h"
 
+
 class Test_for_maxIntforSqRt : public QObject
 {
     Q_OBJECT
 
 private slots:
-    void testCase1();
+    void minimumNumber();
+    void singleDigitNumberOutcomeInteger();
+    void twoDigitNumberOutcomeSmaller();
+    void twoDigitNumberOutcomeInteger();
+    void twoDigitNumberOutcomeSmallerWithPartialRoot();
+    void threeDigitNumberOutcomeIntegerWithPartialRoot();
 };
 
 #endif // TEST_FOR_MAXINTFORSQRT_H

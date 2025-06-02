@@ -11,22 +11,24 @@
 int main(int argc, char *argv[])
 {
     //Русский язык
-    SetConsoleOutputCP(1251);
-    SetConsoleCP(1251);
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
 
-    //qDebug() << 532532;
 
     //Тесты конвертации
     Test_for_convertArrCharToString test;
     QTest::qExec(&test);
+    qDebug() << '\n';
 
     //Тесты максимума
     Test_for_maxIntforSqRt test1;
     QTest::qExec(&test1);
+    qDebug() << '\n';
 
     //Тесты квадр. корня
     Test_for_squareRoot test2;
     QTest::qExec(&test2);
+    qDebug() << '\n';
 
     //Остановка программы
     system("pause");

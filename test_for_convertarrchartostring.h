@@ -10,9 +10,9 @@ class Test_for_convertArrCharToString : public QObject
     Q_OBJECT
 
 private slots:
-    void testCase1();
-    void testCase2();
-    void testCase3();
+    void arrayCharacter1();
+    void arrayCharacter4();
+    void arrayCharacter30();
 };
 
 #endif // TEST_FOR_CONVERTARRCHARTOSTRING_H
