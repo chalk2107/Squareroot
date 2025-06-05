@@ -187,3 +187,37 @@ void removeLeadingZeros(QVector<char>& vector) {
     }
 }
 
+
+QVector<char> subtractVectors(const QVector<char>& vector1, const QVector<char>& vector2) {
+
+    QVector<char> resultVector;
+    QVector<char> vectorCopy1 = vector1;
+    QVector<char> vectorCopy2 = vector2;
+
+    while (vectorCopy2.size() < vectorCopy1.size()) {
+        vectorCopy2.prepend('0');
+    }
+
+    int borrow = 0;
+
+    for (int i = vectorCopy1.size() - 1; i >= 0; --i) {
+        int digitCopy1 = vectorCopy1[i] - '0' - borrow;
+        int digitCopy2 = vectorCopy2[i] - '0';
+
+        if (digitCopy1 < digitCopy2) {
+            digitCopy1 += 10;
+            borrow = 1;
+        }
+        else {
+            borrow = 0;
+        }
+
+        int diff = digitCopy1 - digitCopy2;
+        resultVector.prepend(diff + '0');
+    }
+
+    // Удаляем ведущие нули
+    removeLeadingZeros(resultVector);
+
+    return resultVector;
+}

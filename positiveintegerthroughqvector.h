@@ -31,4 +31,7 @@ QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>&
 // Удаляет ведущие нули
 void removeLeadingZeros(QVector<char>& vector);
 
+// Вычитает двух чисел в QVector<char>
+QVector<char> subtractVectors(const QVector<char>& vector1, const QVector<char>& vector2);
+
 #endif // POSITIVEINTEGERTHROUGHQVECTOR_H
