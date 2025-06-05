@@ -137,3 +137,24 @@ QVector<char> multiplyByDigit(const QVector<char>& vector, int x) {
 
     return resultVector;
 }
+
+
+// Сложение двух чисел в QVector<char>
+QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vector2) {
+    QVector<char> resultVector;
+    int i = vector1.size() - 1;
+    int j = vector2.size() - 1;
+    int carry = 0;
+
+    while (i >= 0 || j >= 0 || carry > 0) {
+        int digitA = (i >= 0) ? vector1[i--] - '0' : 0;
+        int digitB = (j >= 0) ? vector2[j--] - '0' : 0;
+        int sum = digitA + digitB + carry;
+        carry = sum / 10;
+
+        resultVector.prepend((sum % 10) + '0');
+    }
+
+    return resultVector;
+}
+
