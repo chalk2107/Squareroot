@@ -14,7 +14,7 @@ public:
 };
 
 
-int maxIntforSqRt(int p, QVector<char> vector, int &x, int &sgrupInt, int lenSgrupInt);
+QVector<char> maxIntforSqRt(const QVector<char> &p, const QVector<char> &vector, int& x, int lenSgrupInt);
 
 // Сравнение двух чисел в QVector<char>
 int compareVectors(const QVector<char>& vector1, const QVector<char>& vector2);

@@ -39,7 +39,7 @@ PositiveIntegerThroughQVector PositiveIntegerThroughQVector::squareRoot() {
         int x = 0;
 
         //Считать, что текущее максимальное число по формуле y = x(20p + x)
-        y = maxIntforSqRt(p, newVector, x, sg, del);
+        //y = maxIntforSqRt(p, newVector, x, sg, del);
 
         //Дополняем вычитаемое число в конец найденного корня
         vectorSqrt += x + '0';
@@ -74,29 +74,40 @@ PositiveIntegerThroughQVector PositiveIntegerThroughQVector::squareRoot() {
 }
 
 
-int maxIntforSqRt(int p, QVector<char> vector, int &x, int &sgrupInt, int lenSgrupInt){
-    int y = 0;
-    int sg = 0;
-    int flag = 0;
+QVector<char> maxIntforSqRt(const QVector<char> &p, const QVector<char> &vector, int& x, int lenSgrupInt){
+    QVector<char> y;
+    QVector<char> sg;
+    x = 0;
+    bool found = false;
 
     //Пока длина сгруппированного числа не равняется нулю
-    for (int j = 0; lenSgrupInt != 0; j++) {
+    for (int j = 0; j != lenSgrupInt; j++) {
 
         //Находим сгруппированное число
-        sg += qPow(10, j) * (vector[lenSgrupInt - 1] - '0');
-        lenSgrupInt--;
+        sg += (vector[j]);
     }
 
-    for (; y < sg && !flag;) {
-        y = x * (20 * p + x);
+    while (!found && compareVectors(y, sg) < 0) {
 
-        if (!((x + 1) * (20 * p + (x + 1)) > sg)) {
-            ++x;
+        QVector<char> term = multiplyByDigit(p, 20);    // 20*p
+        QVector<char> xVector = QVector<char>(1, x + '0');  // x в виде вектора
+        term = addVectors(term, xVector);   // 20*p + x
+        y = multiplyVectors(term, xVector); // x*(20*p + x)
+
+        QVector<char> nextX = QVector<char>(1, (x + 1) + '0');  // x+1 в виде вектора
+        QVector<char> nextTerm = multiplyByDigit(p, 20);    // 20*p
+        nextTerm = addVectors(nextTerm, nextX); // 20*p + (x+1)
+        QVector<char> yNext = multiplyVectors(nextTerm, nextX); // (x+1)*(20*p + (x+1))
+
+
+        if (compareVectors(yNext, sg) <= 0) {
+            x++;
         }
-        else flag = 1;
+        else {
+            found = true;
+        }
     }
 
-    sgrupInt = sg;
 
     return y;
 }
