@@ -116,3 +116,24 @@ int compareVectors(const QVector<char>& vector1, const QVector<char>& vector2) {
     return 0;
 }
 
+
+// Умножение числа в QVector<char> на однозначное число
+QVector<char> multiplyByDigit(const QVector<char>& vector, int x) {
+    if (x == 0) return { '0' };
+
+    QVector<char> resultVector;
+    int carry = 0;
+
+    for (int i = vector.size() - 1; i >= 0; --i) {
+        int digit = vector[i] - '0';
+        int product = digit * x + carry;
+        carry = product / 10;
+        resultVector.prepend((product % 10) + '0');
+    }
+
+    if (carry > 0) {
+        resultVector.prepend(carry + '0');
+    }
+
+    return resultVector;
+}
