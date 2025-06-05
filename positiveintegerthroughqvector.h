@@ -25,4 +25,7 @@ QVector<char> multiplyByDigit(const QVector<char>& vector, int x);
 // Сложение двух чисел в QVector<char>
 QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vector2);
 
+// Умножение двух чисел в QVector<char>
+QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>& vector2);
+
 #endif // POSITIVEINTEGERTHROUGHQVECTOR_H

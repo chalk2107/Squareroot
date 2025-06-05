@@ -158,3 +158,26 @@ QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vect
     return resultVector;
 }
 
+
+// Умножение двух чисел в QVector<char>
+QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>& vector2){
+    QVector<char> resultVector = { '0' };
+
+    for(int i = vector2.size() - 1; i >= 0; i--) {
+        int shift = 0;
+        int digit = vector2[i] - '0';
+
+        QVector<char> partial = multiplyByDigit(vector1, digit);
+
+        for(int j = 0; j < shift; j++) {
+            partial.append('0');
+        }
+
+        resultVector = addVectors(resultVector, partial);
+        shift++;
+    }
+
+    return resultVector;
+}
+
+
