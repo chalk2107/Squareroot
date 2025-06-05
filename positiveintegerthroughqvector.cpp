@@ -180,4 +180,10 @@ QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>&
     return resultVector;
 }
 
+// Удаляет ведущие нули
+void removeLeadingZeros(QVector<char>& vector) {
+    while (vector.size() >= 1 && vector[0] == '0') {
+        vector.remove(0);
+    }
+}
 

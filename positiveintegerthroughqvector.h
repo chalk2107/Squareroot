@@ -28,4 +28,7 @@ QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vect
 // Умножение двух чисел в QVector<char>
 QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>& vector2);
 
+// Удаляет ведущие нули
+void removeLeadingZeros(QVector<char>& vector);
+
 #endif // POSITIVEINTEGERTHROUGHQVECTOR_H
