@@ -16,4 +16,6 @@ public:
 
 int maxIntforSqRt(int p, QVector<char> vector, int &x, int &sgrupInt, int lenSgrupInt);
 
+int compareVectors(const QVector<char>& a, const QVector<char>& b);
+
 #endif // POSITIVEINTEGERTHROUGHQVECTOR_H
