@@ -17,54 +17,50 @@ QString PositiveIntegerThroughQVector::convertArrayCharToString(){
 
 
 PositiveIntegerThroughQVector PositiveIntegerThroughQVector::squareRoot() {
-    int y{ 0 }; // максимальное число
-    int p{ 0 }; // уже найденный корень
     int del;    // делитель
     int i{ 0 }; // данная цифра
-    int sg{ 0 };
     QVector<char> vectorSqrt;
     QVector<char> newVector = vectorInteger;
+    QVector<char> p = { '0' };  // текущий корень
 
-
-    if (newVector.length() % 2 == 0) {
-        del = 2;
-    }
-    else {
-        del = 1;
-    }
+   (newVector.length() % 2 == 0) ? del = 2 : del = 1;
 
     i = del;
 
-    while (i <= vectorInteger.length()) {
+    while(i <= vectorInteger.length()){
         int x = 0;
+        QVector<char> sg;
 
         //Считать, что текущее максимальное число по формуле y = x(20p + x)
-        //y = maxIntforSqRt(p, newVector, x, sg, del);
+        QVector<char> y = maxIntforSqRt(p, newVector, x, del);
 
         //Дополняем вычитаемое число в конец найденного корня
         vectorSqrt += x + '0';
 
-        //говно
-        int lenSqV = vectorSqrt.length();
-        p = p * 10 + (vectorSqrt[lenSqV - 1] - '0');
+        // Обновляем p = p * 10 + x
+        p = multiplyByDigit(p, 10);
+        QVector<char> xVector = QVector<char>(1, x + '0');
+        p = addVectors(p, xVector);
 
+        //Пока длина сгруппированного числа не равняется нулю
+        for(int j = 0; j != del; j++){
+
+            //Находим сгруппированное число
+            sg += (newVector[j]);
+        }
 
         //Находим разность сгруппированного числа и максимального числа
-        int raz = sg - y;
-
-
-        QString newRemaining = QString::number(raz);
-        int lenRaz = newRemaining.length();
-
+        QVector<char> raz = subtractVectors(sg, y);
+        int lenRaz = raz.length();
+        removeLeadingZeros(raz);
 
         newVector.remove(0, del);
 
-        for (int g = lenRaz - 1; g >= 0; g--) {
-            newVector.insert(0, newRemaining.at(g).toLatin1());
+        for(int g = lenRaz - 1; g >= 0; g--){
+            newVector.insert(0, raz[g]);
         }
         del = 2 + lenRaz;
         i += 2;
-
     }
 
     PositiveIntegerThroughQVector r;
