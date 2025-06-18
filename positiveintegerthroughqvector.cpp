@@ -1,8 +1,26 @@
 #include "positiveintegerthroughqvector.h"
 
-PositiveIntegerThroughQVector::PositiveIntegerThroughQVector()
-{
+PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(){
 
+}
+
+PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(QString fileName){
+    QFile file(fileName);
+
+    file.open(QIODevice::ReadOnly);
+    QTextStream in(&file);
+
+    // Чтение файла
+    QString line = in.readLine();
+
+    file.close();
+
+    QByteArray byteArray = line.toLatin1();
+
+    for (int i = 0; i < byteArray.length();i++) {
+        vectorInteger += byteArray[i];
+    }
+    qDebug() << vectorInteger;
 }
 
 

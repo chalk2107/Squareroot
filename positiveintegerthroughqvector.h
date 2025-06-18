@@ -1,14 +1,16 @@
 #ifndef POSITIVEINTEGERTHROUGHQVECTOR_H
 #define POSITIVEINTEGERTHROUGHQVECTOR_H
 #include <QVector>
-#include <QtMath>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
 
 class PositiveIntegerThroughQVector
 {
 public:
     QVector<char> vectorInteger;
-
     PositiveIntegerThroughQVector();
+    PositiveIntegerThroughQVector(QString fileName);
     QString convertArrayCharToString();
     PositiveIntegerThroughQVector squareRoot();
 };
