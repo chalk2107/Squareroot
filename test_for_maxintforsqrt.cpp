@@ -1,5 +1,6 @@
 #include "test_for_maxintforsqrt.h"
 
+//#1 Минимальное число
 void Test_for_maxIntforSqRt::minimumNumber() {
     QVector<char> p = {'0'};
     QVector<char> vector = {'1'};
@@ -12,6 +13,7 @@ void Test_for_maxIntforSqRt::minimumNumber() {
     QVERIFY2(x == 1, "Неверное значение x");
 }
 
+//#2 Однозначное число, с целым исходом
 void Test_for_maxIntforSqRt::singleDigitNumberOutcomeInteger() {
     QVector<char> p = {'0'};
     QVector<char> vector = {'9'};
@@ -24,6 +26,7 @@ void Test_for_maxIntforSqRt::singleDigitNumberOutcomeInteger() {
     QVERIFY2(x == 3, "Неверное значение x");
 }
 
+//#3 Двузначное число, с меньшим исходом
 void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmaller() {
     QVector<char> p = {'0'};
     QVector<char> vector = {'2', '4'};
@@ -36,6 +39,7 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmaller() {
     QVERIFY2(x == 4, "Неверное значение x");
 }
 
+//#4 Двузначное число, с целым исходом
 void Test_for_maxIntforSqRt::twoDigitNumberOutcomeInteger() {
     QVector<char> p = {'0'};
     QVector<char> vector = {'8', '1'};
@@ -48,6 +52,7 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeInteger() {
     QVERIFY2(x == 9, "Неверное значение x");
 }
 
+//#5 Двузначное число, с меньшим исходом и частью найденного корня
 void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmallerWithPartialRoot() {
     QVector<char> p = {'2'};
     QVector<char> vector = {'5', '4'};
@@ -60,6 +65,7 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmallerWithPartialRoot() {
     QVERIFY2(x == 1, "Неверное значение x");
 }
 
+//#6 Трехзначное число, с целым исходом и частью найденного корня
 void Test_for_maxIntforSqRt::threeDigitNumberOutcomeIntegerWithPartialRoot() {
     QVector<char> p = {'5'};
     QVector<char> vector = {'5', '2', '5'};

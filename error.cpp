@@ -1,11 +1,12 @@
 #include "error.h"
 
-
+//Форматирование позиции ошибки в строку
 QStringList formatErrorPosition(const int errorPosition, QString errorLine) {
 
     QStringList result;
      result << errorLine;
     QString string;
+
     for (int i = 0; i < errorPosition; i++) {
         string += "-";
     }
@@ -14,14 +15,12 @@ QStringList formatErrorPosition(const int errorPosition, QString errorLine) {
     return result;
 }
 
-
+//Герерация сообщения об ошибках
 QStringList  Error::generateErrorMessage(const QString& filePath, const QString& fileOutPath){
     Error error;
-    error.errorInputFilePath = filePath;
-
     bool flag = false;
 
-    // Проверка существования входного файла
+    //! Проверка существования входного файла
     if (!QFile::exists(filePath)) {
         error.errors.insert(inputFileNotExist);
         flag = true;
@@ -29,74 +28,83 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
 
     if(!flag){
 
+    //! Открываем файл
     QFile file(filePath);
     file.open(QIODevice::ReadOnly);
 
     QTextStream in(&file);
-    QString line = in.readLine();
+    QString line = in.readLine(); // читаем строку
     lineFile = line;
     //qDebug() << line;
 
-    // Проверка пустого файла
+    //! Проверка пустого файла
     if (line.isNull()) {
         error.errors.insert(inputFileEmpty);
-        file.close();
+        file.close(); //!< закрываем входной файл
     }
 
-    // Проверка существования выходного файла
+    //! Проверка существования выходного файла
     QFile fileOut(fileOutPath);
     if (!fileOut.open(QIODevice::ReadOnly)) {
         error.errors.insert(outputFileNotCreated);
     }
 
-    fileOut.close();
+    fileOut.close(); // закрываем выходной файл
 
-    // Проверка на наличие более одной строки
+    //! Проверка на наличие более одной строки
     int lineCount = 0;
-    while (!in.atEnd()) {
+
+    //Пока не прошли все возможные строки
+    while (!in.atEnd()){
         in.readLine();
         lineCount++;
     }
-    if (lineCount >= 1) {
+    if (lineCount >= 1){
         error.errors.insert(moreOneLine);
     }
 
-    // Проверка на отрицательное число
+    //! Проверка на отрицательное число
     bool flagHasNegative = false;
+
     if (line.startsWith('-')) {
         error.errors.insert(negativeNumber);
         flagHasNegative = true;
     }
 
-    // Проверка на слишком большое число (больше 10^100)
+    //! Проверка на слишком большое число (больше 10^100)
     if (line.length() > 99) {
         error.errors.insert(largeNumber);
     }
 
-    // Проверка на пробелы
+    //! Проверка на пробелы и символы отличные от цифры
     bool flagHasSpace = false;
     bool flagHasChar = false;
 
     int ind = 0;
-    for (QChar ch : line) {
+
+    //Для всех символов в строке
+    for(QChar ch : line) {
         bool hasSpace = false;
+
+        //Если символ пробел
         if (ch.isSpace()) {
             error.errors.insert(spaceBetweenNumbers);
             hasSpace = true;
 
             if(!flagHasSpace){
-                indexErrorSpace = ind;
+                indexErrorSpace = ind; // Запоминаем индекс ошибки
             }
 
             flagHasSpace = true;
         }
 
-        if (!ch.isDigit() && !hasSpace) {
+        //Если символ не символ и не пробел
+        if (!ch.isDigit() && !hasSpace){
             if(!flagHasNegative){
                 error.errors.insert(noNumberInLine);
 
                 if(!flagHasChar){
-                    indexErrorNoNum = ind;
+                    indexErrorNoNum = ind; // Запоминаем индекс ошибки
                 }
 
                 flagHasChar = true;
@@ -105,38 +113,56 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
         flagHasNegative = false;
         ind++;
     }
-    file.close();
+    file.close(); // закрываем входной файл
     }
 
-    //qDebug() << "Errors count:" << error.errors.size();
+
     QStringList  message;
-    for (int err : error.errors) {
+
+    //! Проходим все ошибки
+    for(int err : error.errors) {
         switch (err) {
+
+        // Входной файл не существует
         case inputFileNotExist:
             message << "Неверно указан файл с входными данными. Возможно, файл не существует";
             break;
+
+        // Входной файл пуст
         case inputFileEmpty:
             message << "В указанном входном файле нет значений. Добавьте значение.";
             break;
+
+        // Выходной файл не создан
         case outputFileNotCreated:
             message << "Неверно указан файл для выходных данных. Возможно указанного расположения не существует или нет прав на запись.";
             break;
+
+        // Во входном файле больше одной строки
         case moreOneLine:
             message << "Программа принимает на вход файлы из одной строки. Разместите каждую строчку в отдельном файле.";
             break;
+
+        // В строке не число
         case noNumberInLine:
             message << "Во входном числе присутствует символ, который не является цифрой.";
             message << formatErrorPosition(indexErrorNoNum, lineFile)[0];
             message << formatErrorPosition(indexErrorNoNum, lineFile)[1];
             break;
+
+        // Число слишком большое (больше 10^100)
         case largeNumber:
             message << "Введенное значение превышает допустимое значение. Измените число.";
             break;
+
+        // Отрицательное число
         case negativeNumber:
             message << "Во входной числе присутствует символ “-”, который не является цифрой.";
             message << formatErrorPosition(0, lineFile)[0];
             message << formatErrorPosition(0, lineFile)[1];
             break;
+
+        // В строке присутствует пробел
         case spaceBetweenNumbers:
             message << "Во входном числе присутствует пробел, который не является цифрой.";
             message << formatErrorPosition(indexErrorSpace, lineFile)[0];
@@ -147,5 +173,4 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
         }
     }
     return message;
-
 }
