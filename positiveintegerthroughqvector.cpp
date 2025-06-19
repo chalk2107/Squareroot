@@ -20,7 +20,6 @@ PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(QString fileName){
     for (int i = 0; i < byteArray.length();i++) {
         vectorInteger += byteArray[i];
     }
-    qDebug() << vectorInteger;
 }
 
 
