@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <windows.h>
 
+void startTest();
+void recordFile(QFile& file, QString line);
 
 int main(int argc, char *argv[])
 {
@@ -43,31 +45,14 @@ int main(int argc, char *argv[])
             QString sqrtString = sqrtResult.convertArrayCharToString();
 
             //! Сохраняем результат в файл
-            file.open(QIODevice::WriteOnly);
-            QTextStream out(&file);
-            out << sqrtString;
-            file.close();
+            recordFile(file, sqrtString);
         }
     }
 
     //! Если введен режим тестов
     else if(argc == 2 && QString(argv[1]) == "test"){
         qDebug() << "Запуск тестов\n";
-
-        //! Тесты конвертации
-        Test_for_convertArrCharToString test;
-        QTest::qExec(&test);
-        qDebug() << '\n';
-
-        //! Тесты максимума
-        Test_for_maxIntforSqRt test1;
-        QTest::qExec(&test1);
-        qDebug() << '\n';
-
-        //! Тесты квадр. корня
-        Test_for_squareRoot test2;
-        QTest::qExec(&test2);
-        qDebug() << '\n';
+        startTest();
     }
 
     //! Неправильные аргументы командной строки
@@ -81,4 +66,32 @@ int main(int argc, char *argv[])
     //! Остановка программы
     system("pause");
     return 0;
+}
+
+
+//! Запуск тестов
+void startTest(){
+    //! Тесты конвертации
+    Test_for_convertArrCharToString test;
+    QTest::qExec(&test);
+    qDebug() << '\n';
+
+    //! Тесты максимума
+    Test_for_maxIntforSqRt test1;
+    QTest::qExec(&test1);
+    qDebug() << '\n';
+
+    //! Тесты квадр. корня
+    Test_for_squareRoot test2;
+    QTest::qExec(&test2);
+    qDebug() << '\n';
+}
+
+
+//! Сохранение в файл строки
+void recordFile(QFile& file, QString line){
+    file.open(QIODevice::WriteOnly); // открываем файл
+    QTextStream out(&file);
+    out << line; // записываем строку в файл
+    file.close(); // закрываем файл
 }
