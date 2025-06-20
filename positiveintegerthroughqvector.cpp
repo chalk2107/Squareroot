@@ -134,7 +134,7 @@ QVector<char> maxIntforSqRt(const QVector<char> &p, const QVector<char> &vector,
 
 
 // Сравнение двух чисел в QVector<char>
-int compareVectors(const QVector<char>& vector1, const QVector<char>& vector2) {
+int compareVectors(const QVector<char>& vector1, const QVector<char>& vector2){
 
     //! Сравниваем по длине
     if (vector1.size() != vector2.size()) {

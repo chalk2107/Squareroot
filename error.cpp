@@ -4,19 +4,62 @@
 QStringList formatErrorPosition(const int errorPosition, QString errorLine) {
 
     QStringList result;
-     result << errorLine;
     QString string;
+    result << errorLine;
 
-    for (int i = 0; i < errorPosition; i++) {
+    // Ставим дефис до позиции ошибки
+    for(int i = 0; i < errorPosition; i++) {
         string += "-";
     }
+
+    // На позиции ошибки ставим указатель на символ где ошибка
     string += "^";
     result << string;
     return result;
 }
 
-//Герерация сообщения об ошибках
-QStringList  Error::generateErrorMessage(const QString& filePath, const QString& fileOutPath){
+
+void Error::spaceAndCharCheak(QString line, Error& error, bool& flagNegative){
+    bool flagHasSpace = false;
+    bool flagHasChar = false;
+
+    int ind = 0;
+
+    //Для всех символов в строке
+    for(QChar ch : line) {
+        bool hasSpace = false;
+
+        //Если символ пробел
+        if (ch.isSpace()) {
+            error.errors.insert(spaceBetweenNumbers);
+            hasSpace = true;
+
+            if(!flagHasSpace){
+                indexErrorSpace = ind; // Запоминаем индекс ошибки
+            }
+
+            flagHasSpace = true;
+        }
+
+        //Если символ не символ и не пробел
+        if (!ch.isDigit() && !hasSpace){
+            if(!flagNegative){
+                error.errors.insert(noNumberInLine);
+
+                if(!flagHasChar){
+                    indexErrorNoNum = ind; // Запоминаем индекс ошибки
+                }
+
+                flagHasChar = true;
+            }
+        }
+        flagNegative = false;
+        ind++;
+    }
+}
+
+
+Error Error::addError(const QString& filePath, const QString& fileOutPath){
     Error error;
     bool flag = false;
 
@@ -31,11 +74,10 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
     //! Открываем файл
     QFile file(filePath);
     file.open(QIODevice::ReadOnly);
-
     QTextStream in(&file);
+
     QString line = in.readLine(); // читаем строку
     lineFile = line;
-    //qDebug() << line;
 
     //! Проверка пустого файла
     if (line.isNull()) {
@@ -48,7 +90,6 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
     if (!fileOut.open(QIODevice::ReadOnly)) {
         error.errors.insert(outputFileNotCreated);
     }
-
     fileOut.close(); // закрываем выходной файл
 
     //! Проверка на наличие более одной строки
@@ -77,50 +118,21 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
     }
 
     //! Проверка на пробелы и символы отличные от цифры
-    bool flagHasSpace = false;
-    bool flagHasChar = false;
+    spaceAndCharCheak(line, error, flagHasNegative);
 
-    int ind = 0;
-
-    //Для всех символов в строке
-    for(QChar ch : line) {
-        bool hasSpace = false;
-
-        //Если символ пробел
-        if (ch.isSpace()) {
-            error.errors.insert(spaceBetweenNumbers);
-            hasSpace = true;
-
-            if(!flagHasSpace){
-                indexErrorSpace = ind; // Запоминаем индекс ошибки
-            }
-
-            flagHasSpace = true;
-        }
-
-        //Если символ не символ и не пробел
-        if (!ch.isDigit() && !hasSpace){
-            if(!flagHasNegative){
-                error.errors.insert(noNumberInLine);
-
-                if(!flagHasChar){
-                    indexErrorNoNum = ind; // Запоминаем индекс ошибки
-                }
-
-                flagHasChar = true;
-            }
-        }
-        flagHasNegative = false;
-        ind++;
-    }
     file.close(); // закрываем входной файл
     }
+    return error;
+}
 
-
+//Герерация сообщения об ошибках
+QStringList  Error::generateErrorMessage(const QString& filePath, const QString& fileOutPath){
     QStringList  message;
 
+    Error error = addError(filePath, fileOutPath);
+
     //! Проходим все ошибки
-    for(int err : error.errors) {
+    for(int err : error.errors){
         switch (err) {
 
         // Входной файл не существует

@@ -15,17 +15,20 @@ class Error {
         QString lineFile; //!< Строка файла
 
         /**
-         * @brief Герерация сообщения об ошибках
+         * @brief Генерация сообщения об ошибках
          * @param filePath[in] Путь входного файла
          * @param fileOutPath[in] Путь выходного файла
          * @return Список строк с сообщениями об ошибках
          */
         QStringList  generateErrorMessage(const QString& filePath, const QString& fileOutPath);
+
+        Error addError(const QString& filePath, const QString& fileOutPath);
+
+        void spaceAndCharCheak(QString line, Error& error, bool& flagNegative);
 };
 
 //! @brief Перечисление типов ошибок
 enum ErrorType{
-    noError = 0,
     inputFileNotExist = 1,      //!< Входной файл не существует
     inputFileEmpty = 2,         //!< Входной файл пуст
     outputFileNotCreated = 3,   //!< Выходной файл не создан
