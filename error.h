@@ -22,9 +22,21 @@ class Error {
          */
         QStringList  generateErrorMessage(const QString& filePath, const QString& fileOutPath);
 
+        /**
+         * @brief Добавление ошибок в множество
+         * @param filePath[in] Путь входного файла
+         * @param fileOutPath[in] Путь выходного файла
+         * @return Класс обработки ошибок со всеми найденными ошибками
+         */
         Error addError(const QString& filePath, const QString& fileOutPath);
 
-        void spaceAndCharCheak(QString line, Error& error, bool& flagNegative);
+        /**
+         * @brief Проверка на пробелы и символы отличные от цифры
+         * @param line[in] Строка из файла
+         * @param error[out] Класс обработки ошибок
+         * @param flagNegative[in] Флаг отрицательного числа
+         */
+        void spaceAndCharCheak(QString line, Error& error, bool flagNegative);
 };
 
 //! @brief Перечисление типов ошибок

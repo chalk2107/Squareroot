@@ -14,7 +14,6 @@ PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(QString fileName){
     QTextStream in(&file);
 
     QString line = in.readLine(); // Чтение файла
-
     file.close(); // Закрытие файла
 
     //! Сохранение числа в вектор
@@ -23,6 +22,9 @@ PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(QString fileName){
     for (int i = 0; i < byteArray.length();i++) {
         vectorInteger += byteArray[i];
     }
+
+    //! Удаляем ведущие нули
+    removeLeadingZeros(vectorInteger);
 }
 
 
@@ -199,9 +201,9 @@ QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vect
 QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>& vector2){
     QVector<char> resultVector = { '0' };
 
+    int shift = 0; // сдвиг для добавления нулей
     //! Для всех цифр второго числа
     for(int i = vector2.size() - 1; i >= 0; i--) {
-        int shift = 0; // сдвиг для добавления нулей
         int digit = vector2[i] - '0'; // текущая цифра
 
         //! Умножаем первое число на текущую цифру

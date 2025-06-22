@@ -19,7 +19,8 @@ QStringList formatErrorPosition(const int errorPosition, QString errorLine) {
 }
 
 
-void Error::spaceAndCharCheak(QString line, Error& error, bool& flagNegative){
+// Проверка на пробелы и символы отличные от цифры
+void Error::spaceAndCharCheak(QString line, Error& error, bool flagNegative){
     bool flagHasSpace = false;
     bool flagHasChar = false;
 
@@ -59,6 +60,7 @@ void Error::spaceAndCharCheak(QString line, Error& error, bool& flagNegative){
 }
 
 
+// Добавление ошибок в множество
 Error Error::addError(const QString& filePath, const QString& fileOutPath){
     Error error;
     bool flag = false;
@@ -77,7 +79,6 @@ Error Error::addError(const QString& filePath, const QString& fileOutPath){
     QTextStream in(&file);
 
     QString line = in.readLine(); // читаем строку
-    lineFile = line;
 
     //! Проверка пустого файла
     if (line.isNull()) {
