@@ -185,7 +185,7 @@ void Test_for_squareRoot::rootNinetyDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
     obj.vectorInteger = "472719992252510932429301358863873979096990185397850352673025855258061407006508897512148741";
 
-    QByteArray exp_vector = "68754635643897563485639486893469846364342136";
+    QByteArray exp_vector = "687546356438975634856394868934698463643421367";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }

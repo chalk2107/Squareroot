@@ -23,7 +23,6 @@ QStringList formatErrorPosition(const int errorPosition, QString errorLine) {
 void Error::spaceAndCharCheak(QString line, Error& error, bool flagNegative){
     bool flagHasSpace = false;
     bool flagHasChar = false;
-
     int ind = 0;
 
     //Для всех символов в строке
@@ -77,10 +76,10 @@ Error Error::addError(const QString& filePath, const QString& fileOutPath){
         file.open(QIODevice::ReadOnly);
         QTextStream in(&file);
 
-        QString line = in.readLine(); // читаем строку
+        lineFile = in.readLine(); // читаем строку
 
         //! Проверка пустого файла
-        if (line.isNull()) {
+        if (lineFile.isNull()) {
             error.errors.insert(inputFileEmpty);
             file.close(); //!< закрываем входной файл
         }
@@ -107,18 +106,18 @@ Error Error::addError(const QString& filePath, const QString& fileOutPath){
         //! Проверка на отрицательное число
         bool flagHasNegative = false;
 
-        if (line.startsWith('-')) {
+        if (lineFile.startsWith('-')) {
             error.errors.insert(negativeNumber);
             flagHasNegative = true;
         }
 
         //! Проверка на слишком большое число (больше 10^100)
-    //    if (line.length() > 99) {
-    //        error.errors.insert(largeNumber);
-    //    }
+        if (lineFile.length() > 99) {
+            error.errors.insert(largeNumber);
+        }
 
         //! Проверка на пробелы и символы отличные от цифры
-        spaceAndCharCheak(line, error, flagHasNegative);
+        spaceAndCharCheak(lineFile, error, flagHasNegative);
 
         file.close(); // закрываем входной файл
 
@@ -159,8 +158,7 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
         // В строке не число
         case noNumberInLine:
             message << "Во входном числе присутствует символ, который не является цифрой.";
-            message << formatErrorPosition(indexErrorNoNum, lineFile)[0];
-            message << formatErrorPosition(indexErrorNoNum, lineFile)[1];
+            message << formatErrorPosition(indexErrorNoNum, lineFile);
             break;
 
         // Число слишком большое (больше 10^100)
@@ -171,15 +169,13 @@ QStringList  Error::generateErrorMessage(const QString& filePath, const QString&
         // Отрицательное число
         case negativeNumber:
             message << "Во входной числе присутствует символ “-”, который не является цифрой.";
-            message << formatErrorPosition(0, lineFile)[0];
-            message << formatErrorPosition(0, lineFile)[1];
+            message << formatErrorPosition(0, lineFile);
             break;
 
         // В строке присутствует пробел
         case spaceBetweenNumbers:
             message << "Во входном числе присутствует пробел, который не является цифрой.";
-            message << formatErrorPosition(indexErrorSpace, lineFile)[0];
-            message << formatErrorPosition(indexErrorSpace, lineFile)[1];
+            message << formatErrorPosition(indexErrorSpace, lineFile);
             break;
         default:
             message << "Нет ошибок";
