@@ -72,56 +72,56 @@ Error Error::addError(const QString& filePath, const QString& fileOutPath){
     }
 
     if(!flag){
+        //! Открываем файл
+        QFile file(filePath);
+        file.open(QIODevice::ReadOnly);
+        QTextStream in(&file);
 
-    //! Открываем файл
-    QFile file(filePath);
-    file.open(QIODevice::ReadOnly);
-    QTextStream in(&file);
+        QString line = in.readLine(); // читаем строку
 
-    QString line = in.readLine(); // читаем строку
+        //! Проверка пустого файла
+        if (line.isNull()) {
+            error.errors.insert(inputFileEmpty);
+            file.close(); //!< закрываем входной файл
+        }
 
-    //! Проверка пустого файла
-    if (line.isNull()) {
-        error.errors.insert(inputFileEmpty);
-        file.close(); //!< закрываем входной файл
-    }
+        //! Проверка существования выходного файла
+        QFile fileOut(fileOutPath);
+        if (!fileOut.open(QIODevice::ReadOnly)) {
+            error.errors.insert(outputFileNotCreated);
+        }
+        fileOut.close(); // закрываем выходной файл
 
-    //! Проверка существования выходного файла
-    QFile fileOut(fileOutPath);
-    if (!fileOut.open(QIODevice::ReadOnly)) {
-        error.errors.insert(outputFileNotCreated);
-    }
-    fileOut.close(); // закрываем выходной файл
+        //! Проверка на наличие более одной строки
+        int lineCount = 0;
 
-    //! Проверка на наличие более одной строки
-    int lineCount = 0;
+        //Пока не прошли все возможные строки
+        while (!in.atEnd()){
+            in.readLine();
+            lineCount++;
+        }
+        if (lineCount >= 1){
+            error.errors.insert(moreOneLine);
+        }
 
-    //Пока не прошли все возможные строки
-    while (!in.atEnd()){
-        in.readLine();
-        lineCount++;
-    }
-    if (lineCount >= 1){
-        error.errors.insert(moreOneLine);
-    }
+        //! Проверка на отрицательное число
+        bool flagHasNegative = false;
 
-    //! Проверка на отрицательное число
-    bool flagHasNegative = false;
+        if (line.startsWith('-')) {
+            error.errors.insert(negativeNumber);
+            flagHasNegative = true;
+        }
 
-    if (line.startsWith('-')) {
-        error.errors.insert(negativeNumber);
-        flagHasNegative = true;
-    }
+        //! Проверка на слишком большое число (больше 10^100)
+    //    if (line.length() > 99) {
+    //        error.errors.insert(largeNumber);
+    //    }
 
-    //! Проверка на слишком большое число (больше 10^100)
-//    if (line.length() > 99) {
-//        error.errors.insert(largeNumber);
-//    }
+        //! Проверка на пробелы и символы отличные от цифры
+        spaceAndCharCheak(line, error, flagHasNegative);
 
-    //! Проверка на пробелы и символы отличные от цифры
-    spaceAndCharCheak(line, error, flagHasNegative);
+        file.close(); // закрываем входной файл
 
-    file.close(); // закрываем входной файл
     }
     return error;
 }

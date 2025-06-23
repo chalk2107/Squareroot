@@ -14,13 +14,12 @@ void startTest();
 void recordFile(QFile& file, QString line);
 
 int main(int argc, char *argv[]){
-    //! Русский язык
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-    setlocale(LC_ALL, "Russian");
 
     //! Если введены входной и выходной файлы
     if(argc == 3){
+        //! Русский язык
+        setlocale(LC_ALL, "Russian");
+
         QString inputFilePath = argv[1];  //!< Путь входного файла
         QString outputFilePath = argv[2]; //!< Путь выходного файла
 
@@ -51,12 +50,20 @@ int main(int argc, char *argv[]){
 
     //! Если введен режим тестов
     else if(argc == 2 && QString(argv[1]) == "test"){
+
+        //Русский язык для тестов
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
+
         qDebug() << "Запуск тестов\n";
         startTest();
     }
 
     //! Неправильные аргументы командной строки
     else{
+        //! Русский язык
+        setlocale(LC_ALL, "Russian");
+
         //! Остановка программы
         qDebug() << "Введены неверные входные параметры";
         system("pause");

@@ -7,7 +7,7 @@ void Test_for_squareRoot::rootSmallestNumber() {
 
     QByteArray exp_vector = "1";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№2 Корень однозначного числа, с целым исходом
@@ -17,7 +17,7 @@ void Test_for_squareRoot::rootSingleDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "3";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№3 Корень однозначного числа, с не целым исходом
@@ -27,7 +27,7 @@ void Test_for_squareRoot::rootSingleDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "2";;
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№4 Корень двухзначного числа, с целым исходом
@@ -47,7 +47,7 @@ void Test_for_squareRoot::rootTwoDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "8";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№6 Корень трехзначного числа, с целым исходом
@@ -57,7 +57,7 @@ void Test_for_squareRoot::rootThreeDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "21";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№7 Корень трехзначного числа, с не целым исходом
@@ -67,7 +67,7 @@ void Test_for_squareRoot::rootThreeDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "28";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№8 Корень четырехзначного числа, с целым исходом
@@ -77,7 +77,7 @@ void Test_for_squareRoot::rootFourDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "73";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№9 Корень четырехзначного числа, с не целым исходом
@@ -87,7 +87,7 @@ void Test_for_squareRoot::rootFourDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "96";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№10 Корень десятизначного числа, с целым исходом
@@ -97,7 +97,7 @@ void Test_for_squareRoot::rootTenDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "95214";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№11 Корень десятизначного числа, с не целым исходом
@@ -107,7 +107,7 @@ void Test_for_squareRoot::rootTenDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "62842";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№12 Корень тридцатизначного числа, с целым исходом
@@ -117,7 +117,7 @@ void Test_for_squareRoot::rootThirtyDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "587364210869475";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№13 Корень тридцатизначного числа, с не целым исходом
@@ -127,7 +127,7 @@ void Test_for_squareRoot::rootThirtyDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "268421786985635";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№14 Корень пятидесятизначного числа, с целым исходом
@@ -137,7 +137,7 @@ void Test_for_squareRoot::rootFiftyDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "7465325394657321853964735";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№15 Корень пятидесятизначного числа, с не целым исходом
@@ -147,7 +147,7 @@ void Test_for_squareRoot::rootFiftyDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "3465325394657321853964735";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№16 Корень семидесятизначного числа, с целым исходом
@@ -157,7 +157,7 @@ void Test_for_squareRoot::rootSeventyDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "56394857436958734562394124901260573";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№17 Корень семидесятизначного числа, с не целым исходом
@@ -167,7 +167,7 @@ void Test_for_squareRoot::rootSeventyDigitNumberOutcomeNonInteger() {
 
     QByteArray exp_vector = "87623985726395872368957236895762389";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№18 Корень девяностозначного числа, с целым исходом
@@ -177,7 +177,7 @@ void Test_for_squareRoot::rootNinetyDigitNumberOutcomeInteger() {
 
     QByteArray exp_vector = "345666589705698765976706587458768760568705698";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№19 Корень девяностозначного числа, с не целым исходом
@@ -185,7 +185,7 @@ void Test_for_squareRoot::rootNinetyDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
     obj.vectorInteger = "472719992252510932429301358863873979096990185397850352673025855258061407006508897512148741";
 
-    QByteArray exp_vector = "687546356438975634856394868934698463643421367";
+    QByteArray exp_vector = "68754635643897563485639486893469846364342136";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }

@@ -8,8 +8,8 @@ PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(){
 
 // Конструктор, инициализирующий число из файла
 PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(QString fileName){
-    QFile file(fileName);
 
+    QFile file(fileName);
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
 
@@ -20,7 +20,10 @@ PositiveIntegerThroughQVector::PositiveIntegerThroughQVector(QString fileName){
     vectorInteger = line.toLatin1();
 
     //! Удаляем ведущие нули
-    removeLeadingZeros(vectorInteger);
+    if(vectorInteger.length() > 1) removeLeadingZeros(vectorInteger);
+
+    //! Если строка состояла только из нулей, считаем, что ввели один ноль
+    if(vectorInteger.length() == 0) vectorInteger = "0";
 }
 
 
@@ -39,7 +42,7 @@ QString PositiveIntegerThroughQVector::convertArrayCharToString(){
 // Квадратный корень числа
 PositiveIntegerThroughQVector PositiveIntegerThroughQVector::squareRoot() {
     int lenSgrupInt; // длина сгруппированного число
-    int i{ 0 }; // индекс данной цифры
+    int i = 0; // индекс данной цифры
     QByteArray vectorSqrt; // вектор с результатом вычисления квадратного корня
     QByteArray newVector = vectorInteger; // копия исходного числа
     QByteArray p = "0";  // текущее значение корень
@@ -94,19 +97,18 @@ PositiveIntegerThroughQVector PositiveIntegerThroughQVector::squareRoot() {
 
 // Нахождение максимальной цифры для алгоритма извлечения квадратного корня
 QByteArray maxIntforSqRt(const QByteArray &p, const QByteArray &vector, int& x, int lenSgrupInt){
-    QByteArray y;
+    QByteArray y; // максимальное число
     QByteArray sg; // сгруппированное число
     x = 0;
     bool found = false; // флаг нахождения максимального x
 
     //! Находим сгруппированное число, пока длина сгруппированного числа не равняется нулю
-    for (int j = 0; j != lenSgrupInt; j++) {
+    for(int j = 0; j != lenSgrupInt; j++) {
         sg.append(vector[j]);
     }
 
     //! Пока максимальное число меньше сгруппированного числа
-    while (!found && compareVectors(y, sg) < 0) {
-
+    while(!found && compareVectors(y, sg) < 0) {
         //! Находим y по формуле  y = x*(20*p + x)
         QByteArray term = multiplyByDigit(p, 20);    // 20*p
         QByteArray xVector(1, x + '0');  // x в виде вектора
@@ -131,17 +133,17 @@ QByteArray maxIntforSqRt(const QByteArray &p, const QByteArray &vector, int& x, 
 }
 
 
-// Сравнение двух чисел в QVector<char>
+// Сравнение двух чисел в векторе
 int compareVectors(const QByteArray& vector1, const QByteArray& vector2){
 
     //! Сравниваем по длине
-    if (vector1.size() != vector2.size()) {
+    if(vector1.size() != vector2.size()) {
         return vector1.size() < vector2.size() ? -1 : 1;
     }
 
     //! Сравниваем по цифрам
-    for (int i = 0; i < vector1.size(); i++) {
-        if (vector1[i] != vector2[i]) {
+    for(int i = 0; i < vector1.size(); i++) {
+        if(vector1[i] != vector2[i]) {
             return vector1[i] < vector2[i] ? -1 : 1;
         }
     }
@@ -149,7 +151,7 @@ int compareVectors(const QByteArray& vector1, const QByteArray& vector2){
 }
 
 
-// Умножение числа в QVector<char> на однозначное число
+// Умножение числа в векторе на однозначное число
 QByteArray multiplyByDigit(const QByteArray& vector, int x) {
     if (x == 0) return "0"; // Если умножаем на 0
 
@@ -157,7 +159,7 @@ QByteArray multiplyByDigit(const QByteArray& vector, int x) {
     int carry = 0; // перенос
 
     //! Для всего чила справа налево
-    for (int i = vector.size() - 1; i >= 0; --i) {
+    for(int i = vector.size() - 1; i >= 0; --i) {
         int digit = vector[i] - '0'; // текущая цифра
         int product = digit * x + carry; //!< вычисляем произведение
         carry = product / 10; // вычисляем перенос
@@ -168,12 +170,11 @@ QByteArray multiplyByDigit(const QByteArray& vector, int x) {
     if (carry > 0) {
         resultVector.prepend(carry + '0');
     }
-
     return resultVector;
 }
 
 
-// Сложение двух чисел в QVector<char>
+// Сложение двух чисел в векторе
 QByteArray addVectors(const QByteArray& vector1, const QByteArray& vector2) {
     QByteArray resultVector;
     int i = vector1.size() - 1; // индекс последней цифры первого числа
@@ -188,12 +189,11 @@ QByteArray addVectors(const QByteArray& vector1, const QByteArray& vector2) {
         carry = sum / 10; // вычисляем перенос
         resultVector.prepend((sum % 10) + '0');
     }
-
     return resultVector;
 }
 
 
-// Умножение двух чисел в QVector<char>
+// Умножение двух чисел в векторе
 QByteArray multiplyVectors(const QByteArray& vector1, const QByteArray& vector2){
     QByteArray resultVector = "0";
     int shift = 0; // сдвиг для добавления нулей
@@ -214,7 +214,6 @@ QByteArray multiplyVectors(const QByteArray& vector1, const QByteArray& vector2)
         resultVector = addVectors(resultVector, partial);
         shift++;
     }
-
     return resultVector;
 }
 
@@ -228,19 +227,17 @@ void removeLeadingZeros(QByteArray& vector) {
 }
 
 
-// Вычитание двух чисел в QVector<char>
-QByteArray subtractVectors(const QByteArray& vector1, const QByteArray& vector2) {
-
+// Вычитание двух чисел в векторе
+QByteArray subtractVectors(const QByteArray& vector1, const QByteArray& vector2){
     QByteArray resultVector;
     QByteArray vectorCopy1 = vector1; // копия первого числа
     QByteArray vectorCopy2 = vector2; // копия второго числа
+    int borrow = 0;
 
     //! Добавляем нули ко второму числу
     while (vectorCopy2.size() < vectorCopy1.size()) {
         vectorCopy2.prepend('0');
     }
-
-    int borrow = 0;
 
     //! Вычитаем справа налево
     for(int i = vectorCopy1.size() - 1; i >= 0; --i){
