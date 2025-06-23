@@ -9,11 +9,11 @@
 #include <cstdlib>
 #include <windows.h>
 
+
 void startTest();
 void recordFile(QFile& file, QString line);
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     //! Русский язык
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);

@@ -114,9 +114,9 @@ Error Error::addError(const QString& filePath, const QString& fileOutPath){
     }
 
     //! Проверка на слишком большое число (больше 10^100)
-    if (line.length() > 99) {
-        error.errors.insert(largeNumber);
-    }
+//    if (line.length() > 99) {
+//        error.errors.insert(largeNumber);
+//    }
 
     //! Проверка на пробелы и символы отличные от цифры
     spaceAndCharCheak(line, error, flagHasNegative);

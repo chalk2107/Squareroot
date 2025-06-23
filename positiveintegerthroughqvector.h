@@ -11,7 +11,7 @@
 class PositiveIntegerThroughQVector
 {
 public:
-    QVector<char> vectorInteger; //!< Вектов числа
+    QByteArray vectorInteger; //!< Вектов числа
 
     /**
      * @brief Конструктор по умолчанию
@@ -46,7 +46,7 @@ public:
  * @param lenSgrupInt[in] Длина группы цифр
  * @return Вектор максимальной возможной цифрой
  */
-QVector<char> maxIntforSqRt(const QVector<char> &p, const QVector<char> &vector, int& x, int lenSgrupInt);
+QByteArray  maxIntforSqRt(const QByteArray  &p, const QByteArray  &vector, int& x, int lenSgrupInt);
 
 
 /**
@@ -55,7 +55,7 @@ QVector<char> maxIntforSqRt(const QVector<char> &p, const QVector<char> &vector,
  * @param vector2 Второе число
  * @return 1 если vector1 > vector2, -1 если vector1 < vector2, 0 если равны
  */
-int compareVectors(const QVector<char>& vector1, const QVector<char>& vector2);
+int compareVectors(const QByteArray & vector1, const QByteArray & vector2);
 
 
 /**
@@ -64,7 +64,7 @@ int compareVectors(const QVector<char>& vector1, const QVector<char>& vector2);
  * @param x Однозначное число
  * @return Произведение чисел, заданное через QVector<char>
  */
-QVector<char> multiplyByDigit(const QVector<char>& vector, int x);
+QByteArray multiplyByDigit(const QByteArray& vector, int x);
 
 
 /**
@@ -73,7 +73,7 @@ QVector<char> multiplyByDigit(const QVector<char>& vector, int x);
  * @param vector2 Второе число
  * @return Сумма чисел
  */
-QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vector2);
+QByteArray addVectors(const QByteArray& vector1, const QByteArray& vector2);
 
 
 /**
@@ -82,14 +82,14 @@ QVector<char> addVectors(const QVector<char>& vector1, const QVector<char>& vect
  * @param vector2 Второе число
  * @return Результат умножения
  */
-QVector<char> multiplyVectors(const QVector<char>& vector1, const QVector<char>& vector2);
+QByteArray multiplyVectors(const QByteArray& vector1, const QByteArray& vector2);
 
 
 /**
  * @brief Удаление ведущих нулей
  * @param vector Число, заданное через вектор
  */
-void removeLeadingZeros(QVector<char>& vector);
+void removeLeadingZeros(QByteArray& vector);
 
 
 /**
@@ -99,6 +99,6 @@ void removeLeadingZeros(QVector<char>& vector);
  * @return Разность чисел
  * @note vector1 >= vector2
  */
-QVector<char> subtractVectors(const QVector<char>& vector1, const QVector<char>& vector2);
+QByteArray subtractVectors(const QByteArray& vector1, const QByteArray& vector2);
 
 #endif // POSITIVEINTEGERTHROUGHQVECTOR_H

@@ -3,9 +3,9 @@
 //№1 Корень самого маленького числа
 void Test_for_squareRoot::rootSmallestNumber() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '1' };
+    obj.vectorInteger = "1";
 
-    QVector<char> exp_vector= { '1' };
+    QByteArray exp_vector = "1";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -13,9 +13,9 @@ void Test_for_squareRoot::rootSmallestNumber() {
 //№2 Корень однозначного числа, с целым исходом
 void Test_for_squareRoot::rootSingleDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '9' };
+    obj.vectorInteger = "9";
 
-    QVector<char> exp_vector= { '3' };
+    QByteArray exp_vector = "3";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -23,9 +23,9 @@ void Test_for_squareRoot::rootSingleDigitNumberOutcomeInteger() {
 //№3 Корень однозначного числа, с не целым исходом
 void Test_for_squareRoot::rootSingleDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '8' };
+    obj.vectorInteger = "8";
 
-    QVector<char> exp_vector= { '2' };
+    QByteArray exp_vector = "2";;
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -33,19 +33,19 @@ void Test_for_squareRoot::rootSingleDigitNumberOutcomeNonInteger() {
 //№4 Корень двухзначного числа, с целым исходом
 void Test_for_squareRoot::rootTwoDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '4', '9' };
+    obj.vectorInteger = "49";
 
-    QVector<char> exp_vector= { '7' };
+    QByteArray exp_vector = "7";
 
-    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
+    QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычислен неверно");
 }
 
 //№5 Корень двухзначного числа, с не целым исходом
 void Test_for_squareRoot::rootTwoDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '7', '6' };
+    obj.vectorInteger = "76";
 
-    QVector<char> exp_vector= { '8' };
+    QByteArray exp_vector = "8";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -53,9 +53,9 @@ void Test_for_squareRoot::rootTwoDigitNumberOutcomeNonInteger() {
 //№6 Корень трехзначного числа, с целым исходом
 void Test_for_squareRoot::rootThreeDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '4', '4', '1' };
+    obj.vectorInteger = "441";
 
-    QVector<char> exp_vector= { '2', '1' };
+    QByteArray exp_vector = "21";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -63,9 +63,9 @@ void Test_for_squareRoot::rootThreeDigitNumberOutcomeInteger() {
 //№7 Корень трехзначного числа, с не целым исходом
 void Test_for_squareRoot::rootThreeDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '7', '8', '5' };
+    obj.vectorInteger = "785";
 
-    QVector<char> exp_vector= { '2', '8' };
+    QByteArray exp_vector = "28";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -73,9 +73,9 @@ void Test_for_squareRoot::rootThreeDigitNumberOutcomeNonInteger() {
 //№8 Корень четырехзначного числа, с целым исходом
 void Test_for_squareRoot::rootFourDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '5', '3', '2', '9' };
+    obj.vectorInteger = "5329";
 
-    QVector<char> exp_vector= { '7', '3' };
+    QByteArray exp_vector = "73";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -83,9 +83,9 @@ void Test_for_squareRoot::rootFourDigitNumberOutcomeInteger() {
 //№9 Корень четырехзначного числа, с не целым исходом
 void Test_for_squareRoot::rootFourDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '9', '2', '1', '7' };
+    obj.vectorInteger = "9217";
 
-    QVector<char> exp_vector= { '9', '6' };
+    QByteArray exp_vector = "96";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -93,9 +93,9 @@ void Test_for_squareRoot::rootFourDigitNumberOutcomeNonInteger() {
 //№10 Корень десятизначного числа, с целым исходом
 void Test_for_squareRoot::rootTenDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '9', '0', '6', '5', '7', '0', '5', '7', '9', '6' };
+    obj.vectorInteger = "9065705796";
 
-    QVector<char> exp_vector= { '9', '5', '2', '1', '4' };
+    QByteArray exp_vector = "95214";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -103,9 +103,9 @@ void Test_for_squareRoot::rootTenDigitNumberOutcomeInteger() {
 //№11 Корень десятизначного числа, с не целым исходом
 void Test_for_squareRoot::rootTenDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '3', '9', '4', '9', '2', '4', '2', '6', '4', '2' };
+    obj.vectorInteger = "3949242642";
 
-    QVector<char> exp_vector= { '6', '2', '8', '4', '2' };
+    QByteArray exp_vector = "62842";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -113,12 +113,9 @@ void Test_for_squareRoot::rootTenDigitNumberOutcomeNonInteger() {
 //№12 Корень тридцатизначного числа, с целым исходом
 void Test_for_squareRoot::rootThirtyDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '3', '4', '4', '9', '9', '6', '7', '1', '6', '2',
-                          '1', '0', '3', '2', '1', '0', '9', '3', '7', '3',
-                          '5', '4', '8', '6', '7', '7', '5', '6', '2', '5' };
+    obj.vectorInteger = "344996716210321093735486775625";
 
-    QVector<char> exp_vector= { '5', '8', '7', '3', '6', '4', '2', '1', '0', '8',
-                                '6', '9', '4', '7', '5' };
+    QByteArray exp_vector = "587364210869475";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -126,12 +123,9 @@ void Test_for_squareRoot::rootThirtyDigitNumberOutcomeInteger() {
 //№13 Корень тридцатизначного числа, с не целым исходом
 void Test_for_squareRoot::rootThirtyDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '7', '2', '0', '5', '0', '2', '5', '5', '7', '2',
-                          '8', '5', '6', '1', '6', '1', '1', '0', '5', '9',
-                          '6', '9', '6', '3', '5', '3', '2', '4', '3' };
+    obj.vectorInteger = "72050255728561611059696353243";
 
-    QVector<char> exp_vector= { '2', '6', '8', '4', '2', '1', '7', '8', '6', '9',
-                                '8', '5', '6', '3', '5' };
+    QByteArray exp_vector = "268421786985635";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -139,15 +133,9 @@ void Test_for_squareRoot::rootThirtyDigitNumberOutcomeNonInteger() {
 //№14 Корень пятидесятизначного числа, с целым исходом
 void Test_for_squareRoot::rootFiftyDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '5','5','7','3','1','0','8','3','2','4',
-                          '8','1','1','5','4','9','8','2','9','3',
-                          '3','0','0','2','6','3','5','7','1','6',
-                          '6','0','8','1','6','4','0','5','6','3',
-                          '8','6','2','3','6','2','0','2','2','5' };
+    obj.vectorInteger = "55731083248115498293300263571660816405638623620225";
 
-    QVector<char> exp_vector= { '7','4','6','5','3','2','5','3','9','4',
-                                '6','5','7','3','2','1','8','5','3','9',
-                                '6','4','7','3','5' };
+    QByteArray exp_vector = "7465325394657321853964735";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -155,15 +143,9 @@ void Test_for_squareRoot::rootFiftyDigitNumberOutcomeInteger() {
 //№15 Корень пятидесятизначного числа, с не целым исходом
 void Test_for_squareRoot::rootFiftyDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '1','2','0','0','8','4','8','0','0','9',
-                          '0','8','5','6','9','2','3','4','6','1',
-                          '5','8','2','3','8','3','5','7','1','6',
-                          '6','0','8','1','6','4','0','5','6','3',
-                          '8','6','2','3','6','2','0','3','2','5' };
+    obj.vectorInteger = "12008480090856923461582383571660816405638623620325";
 
-    QVector<char> exp_vector= { '3','4','6','5','3','2','5','3','9','4',
-                                '6','5','7','3','2','1','8','5','3','9',
-                                '6','4','7','3','5' };
+    QByteArray exp_vector = "3465325394657321853964735";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -171,18 +153,9 @@ void Test_for_squareRoot::rootFiftyDigitNumberOutcomeNonInteger() {
 //№16 Корень семидесятизначного числа, с целым исходом
 void Test_for_squareRoot::rootSeventyDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '3','1','8','0','3','7','9','9','4','5',
-                          '3','3','4','8','9','9','8','9','2','0',
-                          '2','7','2','8','4','2','1','3','2','6',
-                          '2','2','6','4','2','3','6','2','1','8',
-                          '6','6','3','6','8','7','8','4','3','8',
-                          '4','1','7','0','8','4','1','6','7','2',
-                          '4','4','4','4','2','8','8','3','2','9' };
+    obj.vectorInteger = "3180379945334899892027284213262264236218663687843841708416724444288329";
 
-    QVector<char> exp_vector= { '5','6','3','9','4','8','5','7','4','3',
-                                '6','9','5','8','7','3','4','5','6','2',
-                                '3','9','4','1','2','4','9','0','1','2',
-                                '6','0','5','7','3' };
+    QByteArray exp_vector = "56394857436958734562394124901260573";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -190,18 +163,9 @@ void Test_for_squareRoot::rootSeventyDigitNumberOutcomeInteger() {
 //№17 Корень семидесятизначного числа, с не целым исходом
 void Test_for_squareRoot::rootSeventyDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '7','6','7','7','9','6','2','8','7','4',
-                          '5','7','9','6','2','7','5','7','6','6',
-                          '8','9','8','1','0','1','7','7','4','4',
-                          '9','8','7','2','0','6','1','9','4','5',
-                          '5','5','9','9','8','2','6','7','2','1',
-                          '4','3','1','1','8','7','8','3','8','6',
-                          '5','5','4','6','9','8','8','3','2','1' };
+    obj.vectorInteger = "7677962874579627576689810177449872061945559982672143118783865546988321";
 
-    QVector<char> exp_vector= { '8','7','6','2','3','9','8','5','7','2',
-                                '6','3','9','5','8','7','2','3','6','8',
-                                '9','5','7','2','3','6','8','9','5','7',
-                                '6','2','3','8','9' };
+    QByteArray exp_vector = "87623985726395872368957236895762389";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -209,21 +173,9 @@ void Test_for_squareRoot::rootSeventyDigitNumberOutcomeNonInteger() {
 //№18 Корень девяностозначного числа, с целым исходом
 void Test_for_squareRoot::rootNinetyDigitNumberOutcomeInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '1','1','9','4','8','5','3','9','1','2',
-                          '3','8','7','6','7','8','9','2','0','9',
-                          '1','3','6','5','5','8','7','3','8','2',
-                          '4','5','2','0','4','2','2','3','9','0',
-                          '7','5','3','6','1','0','3','8','2','3',
-                          '4','3','7','1','3','7','9','1','5','6',
-                          '1','5','8','2','7','5','8','1','1','8',
-                          '6','8','0','7','6','2','1','5','1','3',
-                          '0','9','3','7','6','6','7','2','0','4' };
+    obj.vectorInteger = "119485391238767892091365587382452042239075361038234371379156158275811868076215130937667204";
 
-    QVector<char> exp_vector= { '3','4','5','6','6','6','5','8','9',
-                                '7','0','5','6','9','8','7','6','5',
-                                '9','7','6','7','0','6','5','8','7',
-                                '4','5','8','7','6','8','7','6','0',
-                                '5','6','8','7','0','5','6','9','8' };
+    QByteArray exp_vector = "345666589705698765976706587458768760568705698";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }
@@ -231,21 +183,9 @@ void Test_for_squareRoot::rootNinetyDigitNumberOutcomeInteger() {
 //№19 Корень девяностозначного числа, с не целым исходом
 void Test_for_squareRoot::rootNinetyDigitNumberOutcomeNonInteger() {
     PositiveIntegerThroughQVector obj;
-    obj.vectorInteger = { '4','7','2','7','1','9','9','9','2','2',
-                          '5','2','5','1','0','9','3','2','4','2',
-                          '9','3','0','1','3','5','8','8','6','3',
-                          '8','7','3','9','7','9','0','9','6','9',
-                          '9','0','1','8','5','3','9','7','8','5',
-                          '0','3','5','2','6','7','3','0','2','5',
-                          '8','5','5','2','5','8','0','6','1','4',
-                          '0','7','0','0','6','5','0','8','8','9',
-                          '7','5','1','2','1','4','8','7','4','1' };
+    obj.vectorInteger = "472719992252510932429301358863873979096990185397850352673025855258061407006508897512148741";
 
-    QVector<char> exp_vector= { '6','8','7','5','4','6','3','5','6',
-                                '4','3','8','9','7','5','6','3','4',
-                                '8','5','6','3','9','4','8','6','8',
-                                '9','3','4','6','9','8','4','6','3',
-                                '6','4','3','4','2','1','3','6','7' };
+    QByteArray exp_vector = "687546356438975634856394868934698463643421367";
 
     QVERIFY2(obj.squareRoot().vectorInteger == exp_vector, "Квадратный корень вычеслен неверно");
 }

@@ -2,12 +2,12 @@
 
 //#1 Минимальное число
 void Test_for_maxIntforSqRt::minimumNumber() {
-    QVector<char> p = {'0'};
-    QVector<char> vector = {'1'};
+    QByteArray p = "0";
+    QByteArray vector = "1";
     int x = 0;
     int lenSgrupInt = 1;
 
-    QVector<char> exp_vector = {'1'};
+    QByteArray exp_vector = "1";
 
     QVERIFY2(maxIntforSqRt(p, vector, x, lenSgrupInt) == exp_vector, "Функция вернула неверный результат y");
     QVERIFY2(x == 1, "Неверное значение x");
@@ -15,12 +15,12 @@ void Test_for_maxIntforSqRt::minimumNumber() {
 
 //#2 Однозначное число, с целым исходом
 void Test_for_maxIntforSqRt::singleDigitNumberOutcomeInteger() {
-    QVector<char> p = {'0'};
-    QVector<char> vector = {'9'};
+    QByteArray p = "0";
+    QByteArray vector = "9";
     int x = 0;
     int lenSgrupInt = 1;
 
-    QVector<char> exp_vector = {'9'};
+    QByteArray exp_vector = "9";
 
     QVERIFY2(maxIntforSqRt(p, vector, x, lenSgrupInt) == exp_vector, "Функция вернула неверный результат y");
     QVERIFY2(x == 3, "Неверное значение x");
@@ -28,12 +28,12 @@ void Test_for_maxIntforSqRt::singleDigitNumberOutcomeInteger() {
 
 //#3 Двузначное число, с меньшим исходом
 void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmaller() {
-    QVector<char> p = {'0'};
-    QVector<char> vector = {'2', '4'};
+    QByteArray p = "0";
+    QByteArray vector = "24";
     int x = 0;
     int lenSgrupInt = 2;
 
-    QVector<char> exp_vector = {'1', '6'};
+    QByteArray exp_vector = "16";
 
     QVERIFY2(maxIntforSqRt(p, vector, x, lenSgrupInt) == exp_vector, "Функция вернула неверный результат y");
     QVERIFY2(x == 4, "Неверное значение x");
@@ -41,12 +41,12 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmaller() {
 
 //#4 Двузначное число, с целым исходом
 void Test_for_maxIntforSqRt::twoDigitNumberOutcomeInteger() {
-    QVector<char> p = {'0'};
-    QVector<char> vector = {'8', '1'};
+    QByteArray p = "0";
+    QByteArray vector = "81";
     int x = 0;
     int lenSgrupInt = 2;
 
-    QVector<char> exp_vector = {'8', '1'};
+    QByteArray exp_vector = "81";
 
     QVERIFY2(maxIntforSqRt(p, vector, x, lenSgrupInt) == exp_vector, "Функция вернула неверный результат y");
     QVERIFY2(x == 9, "Неверное значение x");
@@ -54,12 +54,12 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeInteger() {
 
 //#5 Двузначное число, с меньшим исходом и частью найденного корня
 void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmallerWithPartialRoot() {
-    QVector<char> p = {'2'};
-    QVector<char> vector = {'5', '4'};
+    QByteArray p = "2";
+    QByteArray vector = "54";
     int x = 0;
     int lenSgrupInt = 2;
 
-    QVector<char> exp_vector = {'4', '1'};
+    QByteArray exp_vector = "41";
 
     QVERIFY2(maxIntforSqRt(p, vector, x, lenSgrupInt) == exp_vector, "Функция вернула неверный результат y");
     QVERIFY2(x == 1, "Неверное значение x");
@@ -67,12 +67,12 @@ void Test_for_maxIntforSqRt::twoDigitNumberOutcomeSmallerWithPartialRoot() {
 
 //#6 Трехзначное число, с целым исходом и частью найденного корня
 void Test_for_maxIntforSqRt::threeDigitNumberOutcomeIntegerWithPartialRoot() {
-    QVector<char> p = {'5'};
-    QVector<char> vector = {'5', '2', '5'};
+    QByteArray p = "5";
+    QByteArray vector = "525";
     int x = 0;
     int lenSgrupInt = 3;
 
-    QVector<char> exp_vector = {'5', '2', '5'};
+    QByteArray exp_vector = "525";
 
     QVERIFY2(maxIntforSqRt(p, vector, x, lenSgrupInt) == exp_vector, "Функция вернула неверный результат y");
     QVERIFY2(x == 5, "Неверное значение x");
